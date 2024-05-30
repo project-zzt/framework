@@ -1,0 +1,38 @@
+{
+  "name": "zzt/framework",
+  "type": "library",
+  "version": "0.1.0",
+  "description": "The zzt php framework",
+  "keywords": [
+    "framework",
+    "php",
+    "dev"
+  ],
+  "homepage": "http://www.gihub.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Cristian Cornea",
+      "email": "contact@corneascorner.dev",
+      "homepage": "https://www.corneascorner.dev"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "zzt\\": "src/"
+    },
+    "exclude-from-classmap": [
+      "**/Tests/"
+    ]
+  },
+  "autoload-dev": {},
+  "require": {
+    "php": ">=8.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^11.1"
+  },
+  "config": {
+    "preferred-install": "dist"
+  }
+}
