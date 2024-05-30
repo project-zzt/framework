@@ -1,8 +1,8 @@
 <?php return array(
     'root' => array(
         'name' => 'zzt/framework',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => '0.1.0',
+        'version' => '0.1.0.0',
         'reference' => null,
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
@@ -245,8 +245,8 @@
             'dev_requirement' => true,
         ),
         'zzt/framework' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => '0.1.0',
+            'version' => '0.1.0.0',
             'reference' => null,
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
