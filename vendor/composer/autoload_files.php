@@ -6,6 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    '6124b4c8570aa390c21fafd04a26c69f' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-    'ec07570ca5a812141189b1fa81503674' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+    'bea71a5e93d8de575906b4f549cafdc4' => $baseDir . '/globals/router.php',
+    'fd409cdcb933299049c4bcb76a673e87' => $baseDir . '/globals/tools.php',
 );

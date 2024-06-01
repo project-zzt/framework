@@ -1,7 +1,12 @@
 <?php
 
-require __DIR__ . "src/web/application.php";
+// require __DIR__ . "/core/application.php";
+require __DIR__ . '/vendor/autoload.php';
 
-use function zzt\web\init;
+use zzt\Core\Application;
 
-init();
+function run(array $config, array $modules)
+{
+  $app = Application::init($config, $modules);
+  $app->fromGlobals();
+}

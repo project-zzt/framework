@@ -19,19 +19,21 @@
   ],
   "autoload": {
     "psr-4": {
-      "zzt\\": "src/"
+      "zzt\\": "/src"
     },
     "exclude-from-classmap": [
-      "**/Tests/"
+      "**/tests/"
+    ],
+    "files": [
+      "globals/router.php",
+      "globals/tools.php"
     ]
   },
   "autoload-dev": {},
   "require": {
-    "php": ">=8.2"
+    "php": ">=8.3"
   },
-  "require-dev": {
-    "phpunit/phpunit": "^11.1"
-  },
+  "require-dev": {},
   "config": {
     "preferred-install": "dist"
   }
