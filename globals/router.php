@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace zzt\router;
 
 use zzt\Core\Router;
+use zzt\Http\Request;
 
 enum Type: string
 {
@@ -23,7 +24,7 @@ function register(Type $type, string $route, $callback): void
   Router::getInstance()->add($type, $route, $callback);
 }
 
-function find(Type $type, string $route): ?callable
+function find(Request $request): ?callable
 {
-  return Router::getInstance()->get($type, $route);
+  return Router::getInstance()->get($request->method, $request->uri);
 }

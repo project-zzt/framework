@@ -21,7 +21,7 @@ final readonly class Application
     return new self($config, $modules);
   }
 
-  public function fromGlobals(): void
+  public function run(): void
   {
     //$method = $_SERVER['REQUEST_METHOD'];
     $path = $_SERVER['PATH_INFO'] ?? '/';

@@ -34,9 +34,9 @@ class Router
     };
   }
 
-  public function get(Type $type, string $route): ?callable
+  public function get(string $type, string $route): ?callable
   {
-    $res = match ($type->name) {
+    $res = match ($type) {
       Type::GET->name => $this->get[$route] ?? null,
       Type::POST->name => $this->get[$route] ?? null,
       default => null,
