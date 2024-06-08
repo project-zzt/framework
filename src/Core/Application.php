@@ -4,12 +4,11 @@ declare(strict_types=1);
 
 namespace zzt\Core;
 
+use zzt\Http\Request;
 use zzt\router;
 
 final readonly class Application
 {
-  private array $routes;
-
   private function __construct(private array $config, private array $modules)
   {
     foreach ($modules as $module) {
@@ -24,16 +23,11 @@ final readonly class Application
 
   public function fromGlobals(): void
   {
-    $method = $_SERVER['REQUEST_METHOD'];
+    //$method = $_SERVER['REQUEST_METHOD'];
     $path = $_SERVER['PATH_INFO'] ?? '/';
 
     if ($route = router\find(router\Type::GET, $path)) {
-      $route();
+      $route(Request::fromGlobals());
     }
-  }
-
-  private function registerRoutes(): void
-  {
-
   }
 }
