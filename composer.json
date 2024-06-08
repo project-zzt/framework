@@ -19,7 +19,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "zzt\\": "/src"
+      "zzt\\": "/lib"
     },
     "exclude-from-classmap": [
       "**/tests/"
@@ -31,9 +31,9 @@
   },
   "autoload-dev": {},
   "require": {
-    "php": ">=8.3"
+    "php": ">=8.3",
+    "jenssegers/blade": "^2.0"
   },
-  "require-dev": {},
   "config": {
     "preferred-install": "dist"
   }
