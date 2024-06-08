@@ -24,10 +24,10 @@ final readonly class Application
   public function run(): void
   {
     //$method = $_SERVER['REQUEST_METHOD'];
-    $path = $_SERVER['PATH_INFO'] ?? '/';
+    $request = Request::fromGlobals();
 
-    if ($route = router\find(router\Type::GET, $path)) {
-      $route(Request::fromGlobals());
+    if ($route = router\find($request)) {
+      $route($request);
     }
   }
 }
