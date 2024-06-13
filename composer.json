@@ -19,19 +19,31 @@
   ],
   "autoload": {
     "psr-4": {
-      "zzt\\": "src/"
+      "zzt\\": "/lib"
     },
     "exclude-from-classmap": [
       "**/tests/"
+<<<<<<< HEAD
+=======
+    ],
+    "files": [
+      "globals/router.php",
+      "globals/tools.php"
+>>>>>>> 59183569d48757b04822acf7fe6b0d25bd17f626
     ]
   },
   "autoload-dev": {},
   "require": {
+<<<<<<< HEAD
     "php": ">=8.2",
     "latte/latte": "^3.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^11.1"
+=======
+    "php": ">=8.3",
+    "jenssegers/blade": "^2.0"
+>>>>>>> 59183569d48757b04822acf7fe6b0d25bd17f626
   },
   "config": {
     "preferred-install": "dist"
