@@ -22,12 +22,13 @@
       "zzt\\": "src/"
     },
     "exclude-from-classmap": [
-      "**/Tests/"
+      "**/tests/"
     ]
   },
   "autoload-dev": {},
   "require": {
-    "php": ">=8.2"
+    "php": ">=8.2",
+    "latte/latte": "^3.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^11.1"
