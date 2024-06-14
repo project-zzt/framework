@@ -6,14 +6,15 @@ namespace zzt\Http;
 
 readonly class Request
 {
-	private function __constructor(
-		public string $uri,
-		public string $host,
-		public array $headers,
-		public string $body,
-		public array $params,
-		public string $method,
-	) {}
+	private function __construct(
+		public string $uri = '',
+		public string $host = '',
+		public array $headers = [],
+		public string $body = '',
+		public array $params = [],
+		public string $method = '',
+	) {
+	}
 
 	public static function fromGlobals(): self
 	{

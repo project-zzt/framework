@@ -19,7 +19,7 @@ enum Type: string
 /**
  * Register things
  */
-function register(Type $type, string $route, $callback): void
+function register(Type $type, string $route, callable $callback): void
 {
   Router::getInstance()->add($type, $route, $callback);
 }

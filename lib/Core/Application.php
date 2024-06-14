@@ -37,6 +37,6 @@ final readonly class Application
   private function initTemplateEngine(): void
   {
     $latte = new Latte\Engine;
-    $latte->setTempDirectory($this->config['base']['cache']['template_folder']);
+    $latte->setTempDirectory($this->config['base']['cache']['template_dir']);
   }
 }

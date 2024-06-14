@@ -4,14 +4,17 @@ declare(strict_types=1);
 
 namespace zzt\Core;
 
+use zzt\Exception\RouterException;
 use zzt\router\Type;
 
 class Router
 {
   private static $instance;
 
-  private $get = [];
-  private $post = [];
+  private $routes = [
+    'GET' => [],
+    'POST' => []
+  ];
 
   private function __construct()
   {
@@ -27,21 +30,15 @@ class Router
 
   public function add(Type $type, string $route, $callback): void
   {
-    match ($type->name) {
-      Type::GET->name => $this->get[$route] = $callback,
-      Type::POST->name => $this->post[$route] = $callback,
-      default => null,
-    };
+    if (!array_key_exists($type->name, $this->routes)) {
+      throw new RouterException('Http type not supported: ' . $type->name);
+    }
+
+    $this->routes[$type->name][$route] = $callback;
   }
 
-  public function get(string $type, string $route): ?callable
+  public function get(Type $type, string $route): ?callable
   {
-    $res = match ($type) {
-      Type::GET->name => $this->get[$route] ?? null,
-      Type::POST->name => $this->get[$route] ?? null,
-      default => null,
-    };
-
-    return $res;
+    return $this->routes[$type->name][$route];
   }
 }

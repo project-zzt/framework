@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace zzt;
+namespace zzt\Exception;
 
-class ConfigError extends \Exception
+class ConfigException extends \Exception
 {
   private string $output = 'Looks like a config is not set up correctly. [Param: %s]';
 
