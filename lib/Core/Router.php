@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace zzt\Core;
 
 use zzt\Exception\RouterException;
-use zzt\router\Type;
+use zzt\globals\router\Type;
 
 class Router
 {

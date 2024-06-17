@@ -4,24 +4,40 @@ declare(strict_types=1);
 
 namespace zzt\Core;
 
+use Exception;
 use zzt\Http\Request;
-use zzt\router;
+use zzt\globals\router;
 use Latte;
 
-final readonly class Application
+final class Application
 {
-  private function __construct(private array $config, private array $modules)
+  private static Application $instance;
+  public readonly Latte\Engine $template;
+
+  private function __construct(private readonly array $config, private readonly array $modules)
   {
+    // Initialize modules
     foreach ($modules as $module) {
       require $module;
     }
 
-    $this->initTemplateEngine();
+    // Initialize template engine
+    $this->template = new Latte\Engine;
+    $this->template->setTempDirectory($this->config['base']['cache']['template_dir']);
+  }
+
+  public static function getInstance(): self
+  {
+    if (self::$instance === null) {
+      throw new Exception("Application not initialized. Something went wrong on bootstrap.");
+    }
+    return self::$instance;
   }
 
   public static function init(array $config, array $modules): self
   {
-    return new self($config, $modules);
+    self::$instance = new self($config, $modules);
+    return self::$instance;
   }
 
   public function run(): void
@@ -32,11 +48,5 @@ final readonly class Application
     if ($route = router\find($request)) {
       echo $route($request);
     }
-  }
-
-  private function initTemplateEngine(): void
-  {
-    $latte = new Latte\Engine;
-    $latte->setTempDirectory($this->config['base']['cache']['template_dir']);
   }
 }

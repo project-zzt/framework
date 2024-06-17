@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace zzt\globals\render;
 
-function output(): string
+use zzt\Core\Application;
+
+function output(string $template, array $params = []): string
 {
-  return '';
+  return Application::getInstance()->template->renderToString($template, $params);
 }
