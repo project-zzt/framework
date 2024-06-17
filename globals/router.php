@@ -26,5 +26,11 @@ function register(Type $type, string $route, callable $callback): void
 
 function find(Request $request): ?callable
 {
-  return Router::getInstance()->get($request->method, $request->uri);
+  try {
+    $type = Type::tryFrom($request->method);
+  } catch (\Throwable) {
+    //TODO: handle
+  }
+
+  return Router::getInstance()->get($type, $request->uri);
 }

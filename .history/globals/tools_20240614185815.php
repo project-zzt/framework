@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace zzt\globals\tools;
+namespace zzt\tools;
 
 use zzt\Exception\ConfigException;
 
