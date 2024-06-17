@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace zzt\di;
+namespace zzt\globals\di;
 
 use zzt\Core\Injectable;
 

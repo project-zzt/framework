@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace zzt\router;
+namespace zzt\globals\router;
 
 use zzt\Core\Router;
 use zzt\Http\Request;

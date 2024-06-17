@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace zzt\render;
-
-use zzt\Core\Injectable;
+namespace zzt\globals\render;
 
 function get(): string
 {
