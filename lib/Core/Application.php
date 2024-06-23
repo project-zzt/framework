@@ -5,7 +5,11 @@ declare(strict_types=1);
 namespace zzt\Core;
 
 use Exception;
+<<<<<<< HEAD
 use zzt\Http;
+=======
+use zzt\Http\Request;
+>>>>>>> b85ec4f353f5780cf1e10d84b071d752465de664
 use zzt\globals\router;
 use Latte;
 
@@ -24,10 +28,13 @@ final class Application
     // Initialize template engine
     $this->template = new Latte\Engine;
     $this->template->setTempDirectory($this->config['base']['cache']['template_dir']);
+<<<<<<< HEAD
     $this->template->setLoader(new Latte\Loaders\FileLoader($this->config['base']['template_dir']));
 
    // Auto refresh in dev mode 
     ZZT_ENV === 'dev' ? $this->template->setAutoRefresh(true) : $this->template->setAutoRefresh(false);
+=======
+>>>>>>> b85ec4f353f5780cf1e10d84b071d752465de664
   }
 
   public static function getInstance(): self
@@ -52,6 +59,7 @@ final class Application
     if ($route = router\find($request)) {
       $response = $route($request);
     }
+<<<<<<< HEAD
   
     /* @var Http\Response $response */
     http_response_code($response->status);
@@ -59,5 +67,7 @@ final class Application
       header("$name: $value");
     }
     echo $response->body;
+=======
+>>>>>>> b85ec4f353f5780cf1e10d84b071d752465de664
   }
 }
