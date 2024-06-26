@@ -7,6 +7,9 @@ namespace zzt\globals\router;
 use zzt\Core\Router;
 use zzt\Http\Request;
 
+/**
+ * Request types
+ */
 enum Type: string
 {
   case GET = 'GET';
@@ -17,13 +20,24 @@ enum Type: string
 }
 
 /**
- * Register things
- */
+* Register new route.
+*
+* @param Type $type Request Type
+* @param string $route Route identifier
+* @param callable $callback Callback to route handler
+* @return void
+*/
 function register(Type $type, string $route, callable $callback): void
 {
   Router::getInstance()->add($type, $route, $callback);
 }
 
+/**
+* Find request route.
+*
+* @param Request $request Current request
+* @return callable|null
+*/
 function find(Request $request): ?callable
 {
   try {
