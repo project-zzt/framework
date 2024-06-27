@@ -38,7 +38,7 @@ function register(Type $type, string $route, string $callback): void
 * @param Request $request Current request
 * @return callable|null
 */
-function find(Request $request): ?callable
+function find(Request $request): ?string
 {
   try {
     $type = Type::tryFrom($request->method);

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use zzt\Chirp\Chirphp;
+use zzt\Chirphp\Chirphp;
 
 enum ChirpColor
 {

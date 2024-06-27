@@ -9,7 +9,7 @@ use zzt\Exception\ConfigException;
 function build_module_path(array $config): array
 {
   $basePath = $config['base_path'] ?? throw new ConfigException('base_path');
-  $moduleDir = $config['base']['modules_dir'] ?? throw new ConfigException('modules_dir');
+  $moduleDir = $config['base']['modules_folder'] ?? throw new ConfigException('modules_folder');
 
   $folders = scandir($basePath . '/' . $moduleDir);
 

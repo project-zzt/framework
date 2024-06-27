@@ -16,11 +16,6 @@ use zzt\globals\router;
 $chirphp = Chirphp::new(new ChirpConfig()); //TODO: The 'real' ChirpConfig is needed somehow
 chirp("zzt booting ...", ChirpColor::BLUE);
 
-// Initialize modules
-foreach ($modules as $module) {
-  require $module;
-}
-
 // Initialize template engine
 $template = new Latte\Engine;
 $template->setTempDirectory($config['base']['cache']['template_dir']);
@@ -29,14 +24,15 @@ $template->setLoader(new Latte\Loaders\FileLoader($config['base']['template_dir'
 ZZT_ENV === 'dev' ? $template->setAutoRefresh(true) : $template->setAutoRefresh(false);
 
 // Initialize app
-$app = Application::init($config, $template);
+$app = Application::init($config, $modules, $template);
 
 // Initialize request
 $request = Http\Request::fromGlobals();
 // Get handler based on route
 $handler = router\find($request);
+$handler = require $handler;
 // Get response from handler
-$response = $route($request);
+$response = $handler($request);
 // Build response
 http_response_code($response->status);
 foreach ($response->headers as $name => $value) {
