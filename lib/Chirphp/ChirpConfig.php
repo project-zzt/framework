@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace zzt\Chirp;
+namespace zzt\Chirphp;
 
 class ChirpConfig
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use zzt\Chirp\Chir;
+use zzt\Chirp\Chirphp;
 
 enum ChirpColor
 {
@@ -19,5 +19,5 @@ function chirp(...$args): void
   if (count($args) === 0) {
     return;
   }
-  Chir::getInstance()->submit($args);
+  Chirphp::getInstance()->submit($args);
 }

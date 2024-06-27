@@ -28,7 +28,7 @@ class Router
     return self::$instance;
   }
 
-  public function add(Type $type, string $route, $callback): void
+  public function add(Type $type, string $route, string $callback): void
   {
     if (!array_key_exists($type->name, $this->routes)) {
       throw new RouterException('Http type not supported: ' . $type->name);

@@ -2,23 +2,26 @@
 
 declare(strict_types=1);
 
-namespace zzt\Chirp;
+namespace zzt\Chirphp;
 
 use ChirpColor;
+use Exception;
 
 final class Chirphp
 {
-	private static ?self $instance;
-	private static ?ChirpConfig $config;
+	private static ?self $instance = null;
+	private static ?ChirpConfig $config = null;
 
 	private function __construct()
 	{
+		//TODO: Get this working
+		exec('./chirper.php', $output, $res);
 	}
 
 	public static function getInstance(): self
 	{
 		if (self::$instance === null) {
-			self::$instance = new self();
+			throw new Exception("Chirphp not initialized. Something went wrong on.");
 		}
 
 		return self::$instance;
@@ -26,8 +29,12 @@ final class Chirphp
 
 	public static function new(?ChirpConfig $config): self
 	{
-		self::$config = $config;
-		return self::getInstance();	
+		if (self::$instance === null) {
+			self::$instance = new self();
+			self::$config = $config;
+		}
+
+		return self::$instance;
 	}
 
 	public function submit(...$args): void
@@ -63,7 +70,7 @@ final class Chirphp
 
 class Output
 {
-	public ?mixed $argument;
+	public mixed $argument = null;
 	public readonly int $timestamp;
 
 	public function __construct(public ChirpColor $color)

@@ -14,20 +14,8 @@ final class Application
   private static Application $instance;
   public readonly Latte\Engine $template;
 
-  private function __construct(private readonly array $config, private readonly array $modules)
+  private function __construct(private readonly array $config)
   {
-    // Initialize modules
-    foreach ($modules as $module) {
-      require $module;
-    }
-
-    // Initialize template engine
-    $this->template = new Latte\Engine;
-    $this->template->setTempDirectory($this->config['base']['cache']['template_dir']);
-    $this->template->setLoader(new Latte\Loaders\FileLoader($this->config['base']['template_dir']));
-
-   // Auto refresh in dev mode 
-    ZZT_ENV === 'dev' ? $this->template->setAutoRefresh(true) : $this->template->setAutoRefresh(false);
   }
 
   public static function getInstance(): self
@@ -38,26 +26,13 @@ final class Application
     return self::$instance;
   }
 
-  public static function init(array $config, array $modules): self
+  public static function init(array $config): self
   {
-    self::$instance = new self($config, $modules);
+    if (self::$instance !== null) {
+      throw new Exception("Application already initialized. Something went wrong.");
+    }
+
+    self::$instance = new self($config);
     return self::$instance;
-  }
-
-  public function run(): void
-  {
-    //$method = $_SERVER['REQUEST_METHOD'];
-    $request = Http\Request::fromGlobals();
-
-    if ($route = router\find($request)) {
-      $response = $route($request);
-    }
-  
-    /* @var Http\Response $response */
-    http_response_code($response->status);
-    foreach ($response->headers as $name => $value) {
-      header("$name: $value");
-    }
-    echo $response->body;
   }
 }

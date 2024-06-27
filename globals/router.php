@@ -24,10 +24,10 @@ enum Type: string
 *
 * @param Type $type Request Type
 * @param string $route Route identifier
-* @param callable $callback Callback to route handler
+* @param string $callback Callback to route handler
 * @return void
 */
-function register(Type $type, string $route, callable $callback): void
+function register(Type $type, string $route, string $callback): void
 {
   Router::getInstance()->add($type, $route, $callback);
 }
