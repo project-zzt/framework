@@ -19,9 +19,11 @@ chirp("zzt booting ...", ChirpColor::BLUE);
 // Initialize template engine
 $template = new Latte\Engine;
 $template->setTempDirectory($config['base']['cache']['template_dir']);
-$template->setLoader(new Latte\Loaders\FileLoader($config['base']['template_dir']));
+$template->setLoader(new Latte\Loaders\FileLoader($config['base_path']));
 // Auto refresh in dev mode 
 ZZT_ENV === 'dev' ? $template->setAutoRefresh(true) : $template->setAutoRefresh(false);
+// Base template paths
+define('ZZT_BASE_TEMPLATE', "../../../templates/base.latte");
 
 // Initialize app
 $app = Application::init($config, $modules, $template);

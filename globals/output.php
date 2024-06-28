@@ -16,7 +16,14 @@ use zzt\Http;
 */
 function template(string $template, array $params = []): Http\Response
 {
-  $body = Application::getInstance()->template->renderToString($template, $params);
+  $app = Application::getInstance();
+  $viewFolder = $app->config->viewsFolder;
+  $moduleFolder = $app->config->modulesFolder;
+  $templatePath = $moduleFolder . '/home/' . $viewFolder . '/' . $template;
+
+  $params['ZZT_BASE_TEMPLATE'] = ZZT_BASE_TEMPLATE;
+
+  $body = Application::getInstance()->template->renderToString($templatePath, $params);
   return Http\Response::new($body);
 }
 
