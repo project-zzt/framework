@@ -22,6 +22,8 @@ function template(string $template, array $params = []): Http\Response
   $templatePath = $moduleFolder . '/home/' . $viewFolder . '/' . $template;
 
   $params['ZZT_BASE_TEMPLATE'] = ZZT_BASE_TEMPLATE;
+  $params['IS_DEV'] = ZZT_ENV === 'dev';
+  $params['IS_DEBUG'] = ZZT_DEBUG;
 
   $body = Application::getInstance()->template->renderToString($templatePath, $params);
   return Http\Response::new($body);

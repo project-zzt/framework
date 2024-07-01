@@ -4,6 +4,11 @@ declare(strict_types=1);
 
 namespace zzt\Http;
 
+/**
+ * Http Request 
+ *
+ * @author Cristian Cornea <contact@corneascorner.dev>
+ */
 readonly class Request
 {
 	private function __construct(

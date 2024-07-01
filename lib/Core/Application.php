@@ -5,17 +5,24 @@ declare(strict_types=1);
 namespace zzt\Core;
 
 use Exception;
-use zzt\Http;
-use zzt\globals\router;
 use Latte;
 use zzt\Exception\ConfigException;
 
+/**
+ * Main application
+ *
+ * @author Cristian Cornea <contact@corneascorner.dev>
+ */
 final class Application
 {
   private static ?Application $instance = null;
   public readonly ?Config $config;
   private string $currentModule;
 
+  /**
+   * @param string[] $config Main application config (from config.php)
+   * @param Latte\Engine $template Template system
+   */
   private function __construct(
     array $config,
     public readonly Latte\Engine $template
@@ -23,11 +30,21 @@ final class Application
     $this->config = new Config($config);
   }
 
+  /**
+   * Returns the current module during bootstrap phase
+   *
+   * @return string Name of the current module
+   */
   public function getCurrentModule(): string
   {
     return $this->currentModule;
   }
 
+  /**
+   * Returns the application
+   *
+   * @return self
+   */
   public static function getInstance(): self
   {
     if (self::$instance === null) {
@@ -36,6 +53,13 @@ final class Application
     return self::$instance;
   }
 
+  /**
+   * Init application during bootstrap.
+   *
+   * @param string[] $config Main application config (from config.php)
+   * @param Latte\Engine $template Template system
+   * @return self
+   */
   public static function init(array $config, array $modules, Latte\Engine $template): self
   {
     if (self::$instance !== null) {
@@ -47,6 +71,11 @@ final class Application
     return self::$instance;
   }
 
+  /**
+  * Initialized all registered modules
+  *
+  * @param string[] $modules Registered module
+  */
   private function initModules(array $modules): void
   {
     // Initialize modules

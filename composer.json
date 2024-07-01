@@ -27,7 +27,8 @@
     "files": [
       "globals/router.php",
       "globals/tools.php",
-      "globals/output.php"
+      "globals/output.php",
+      "globals/http.php"
     ]
   },
   "autoload-dev": {},

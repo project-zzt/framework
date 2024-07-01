@@ -13,7 +13,7 @@ use zzt\Core\Application;
 use zzt\globals\router;
 
 // Initialize Chirper
-$chirphp = Chirphp::new(new ChirpConfig()); //TODO: The 'real' ChirpConfig is needed somehow
+if (ZZT_ENV === 'dev') $chirphp = Chirphp::new(new ChirpConfig()); //TODO: The 'real' ChirpConfig is needed somehow
 chirp("zzt booting ...", ChirpColor::BLUE);
 
 // Initialize template engine
