@@ -10,7 +10,7 @@ use zzt\Chirphp\ChirpConfig;
 use zzt\Chirphp\Chirphp;
 use zzt\Http;
 use zzt\Core\Application;
-use zzt\globals\router;
+use zzt\Core\Router;
 
 // Initialize Chirper
 if (ZZT_ENV === 'dev') $chirphp = Chirphp::new(new ChirpConfig()); //TODO: The 'real' ChirpConfig is needed somehow
@@ -30,11 +30,11 @@ $app = Application::init($config, $modules, $template);
 
 // Initialize request
 $request = Http\Request::fromGlobals();
-// Get handler based on route
-$handler = router\find($request);
-$handler = require $handler;
-// Get response from handler
-$response = $handler($request);
+
+// Handle request
+$router = Router::getInstance();
+$response = $router->handle($request);
+
 // Build response
 http_response_code($response->status);
 foreach ($response->headers as $name => $value) {
