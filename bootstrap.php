@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Bootstrap the request - response lifecycle.
  * This should get required last in the public/index.php
  *
- * REQUIRES: $config & $modules arry to be present
+ * REQUIRES: $config & $modules array to be present
  */
-
 use zzt\Chirphp\ChirpConfig;
 use zzt\Chirphp\Chirphp;
 use zzt\Http;
